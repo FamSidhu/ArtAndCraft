@@ -1,7 +1,7 @@
-/* App.css */
 
 .fixed-nav-bar {
-  @apply fixed top-0 z-50;
+  @apply fixed
+   top-0 z-50;
 }
 
 .navbar-container {
