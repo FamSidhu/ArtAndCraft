@@ -10,7 +10,7 @@ const AboutUs = () => {
           <h2 className="text-4xl font-bold mt-6">About Us</h2>
           <br />
           <p className="mb-4 text-gray-800">
-            To develop an understanding and appreciation of art’s complex role
+            To develop an understanding and appreciation of art's complex role
             in reflecting and affecting how people relate critically and
             creatively to a changing world.
           </p>
@@ -19,9 +19,14 @@ const AboutUs = () => {
             activities that deepen an understanding of how art work to produce
             meaning and advance knowledge.
           </p>
-          <p className="text-gray-800">
+          <p className="mb-4 text-gray-800">
             To provide a platform for interdisciplinary thinking and research
             where ideas and practices can be explored and tested.
+          </p>
+          <p className="text-gray-800">
+            To inspire creativity, provide a platform for artists to showcase
+            their work, and make art accessible to everyone by offering
+            resources, tutorials, and a community for art enthusiasts.
           </p>
         </div>
 
@@ -38,7 +43,7 @@ const AboutUs = () => {
         <h2 className="text-4xl font-bold">Our Mission</h2>
         <br />
         <p className="mb-4 text-gray-800">
-          To develop an understanding and appreciation of art’s complex role in
+          To develop an understanding and appreciation of art's complex role in
           reflecting and affecting how people relate critically and creatively
           to a changing world.
         </p>
