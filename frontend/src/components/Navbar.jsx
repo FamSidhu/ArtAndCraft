@@ -8,6 +8,8 @@ const Navbar = () => {
   const navLinks = [
     { to: "/", label: "Home" },
     { to: "/categories", label: "Categories" },
+    { to: "/artists", label: "Artists" },
+    { to: "/Crafters", label: "Crafters" },
     { to: "/crafts", label: "Crafts" },
     { to: "/about", label: "About" },
     { to: "/contact", label: "Contact" },

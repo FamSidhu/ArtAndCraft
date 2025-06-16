@@ -1,5 +1,6 @@
 import React, { useRef, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import products from "../data/products.json";
 
 const Home = () => {
   // Import useRef and useEffect for intersection observer and animation
@@ -106,20 +107,18 @@ const Home = () => {
       <section className="px-6 md:px-20 py-12">
         <h2 className="text-2xl font-semibold mb-8">Featured Items</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-          {[1, 2, 3].map((item) => (
+          {products.map((item) => (
             <div
-              key={item}
+              key={item.id}
               className="border border-black rounded-lg p-4 shadow hover:shadow-md transition"
             >
               <img
-                src={`https://images.unsplash.com/photo-1597566833495-e4ad471783ec?q=80&w=1467&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D,${item}`}
-                alt="item"
-                className="rounded mb-4 w-full"
+                src={item.image}
+                alt={item.name}
+                className="rounded mb-4 w-full h-48 object-cover"
               />
-              <h3 className="font-bold text-lg">Beautiful Craft #{item}</h3>
-              <p className="text-sm">
-                High quality, handmade item from a verified craftsman.
-              </p>
+              <h3 className="font-bold text-lg">{item.price}</h3>
+              <p className="text-sm">{item.description}</p>
               <button className="mt-4 bg-black text-white px-4 py-2 rounded hover:bg-gray-700 hover:text-white transition-colors">
                 View Details
               </button>
@@ -127,6 +126,7 @@ const Home = () => {
           ))}
         </div>
       </section>
+
       {/* Why Choose Us */}
       <section className="bg-gray-100 text-black py-16 px-6 md:px-20">
         <h2 className="text-2xl font-semibold text-center mb-10">
