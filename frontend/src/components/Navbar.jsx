@@ -1,9 +1,19 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import { useLocation } from "react-router-dom";
+import React, { useState } from "react";
+import { Link, useLocation } from "react-router-dom";
+import { useCart } from "../context/CartContext";
+import CartSidebar from "../pages/CartSidebar.jsx"; // ✅ adjust path if needed
 
 const Navbar = () => {
   const location = useLocation();
+  const { cartItems } = useCart();
+
+  // ✅ Sidebar open/close state
+  const [isCartOpen, setIsCartOpen] = useState(false);
+
+  // ✅ Toggle function
+  const toggleCart = () => {
+    setIsCartOpen(!isCartOpen);
+  };
 
   const navLinks = [
     { to: "/", label: "Home" },
@@ -16,20 +26,19 @@ const Navbar = () => {
   ];
 
   const isActive = (path) => {
-    // For root path, exact match; for others, startsWith
     if (path === "/") return location.pathname === "/";
     return location.pathname.startsWith(path);
   };
 
   return (
-    <header className="fixed-nav-bar w-full shadow-md">
+    <header className="fixed-nav-bar w-full shadow-md z-50">
       <nav className="navbar-container bg-black text-white w-full flex justify-between items-center px-10 py-4">
-        {/* Brand */}
+        {/* Logo */}
         <div className="nav-logo text-2xl font-serif font-bold">
           Art <span className="font-sans">&</span> Crafts
         </div>
 
-        {/* Navigation Links */}
+        {/* Nav Links */}
         <ul className="nav-links flex space-x-6 text-lg font-light ml-8">
           {navLinks.map((link) => (
             <li key={link.to} className="link">
@@ -37,7 +46,7 @@ const Navbar = () => {
                 to={link.to}
                 className={`pb-1 transition-all hover:text-gray-400 ${
                   isActive(link.to)
-                    ? "border-b-2 border-gray-400 text-white-400"
+                    ? "border-b-2 border-gray-400 text-white"
                     : "border-b-2 border-transparent"
                 }`}
               >
@@ -47,19 +56,23 @@ const Navbar = () => {
           ))}
         </ul>
 
+        {/* Icons Section */}
         <div className="nav-icons flex space-x-4 text-xl relative">
           <Link to="/search" className="hover:text-gray-400">
             <i className="ri-search-line"></i>
           </Link>
-          <button className="hover:text-gray-400 relative">
+          <button className="hover:text-gray-400 relative" onClick={toggleCart}>
             <i className="ri-shopping-bag-line"></i>
-            <sup className="cart-count">0</sup>
+            <sup className="cart-count">{cartItems.length}</sup>
           </button>
           <Link to="/login" className="hover:text-gray-400">
             <i className="ri-user-line"></i>
           </Link>
         </div>
       </nav>
+
+      {/* ✅ Sidebar shown here */}
+      <CartSidebar isOpen={isCartOpen} toggleCart={toggleCart} />
     </header>
   );
 };

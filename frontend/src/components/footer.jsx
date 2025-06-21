@@ -68,48 +68,41 @@ const Footer = () => {
 
           {/* Contact Info */}
           <div>
-            <h4 className="text-lg font-semibold mb-4">Get in Touch</h4>
+            <h4 className="text-lg font-semibold mb-4">Get In Touch</h4>
             <div className="space-y-3">
               <div className="flex items-center space-x-3">
-                <i className="ri-mail-line text-blue-400"></i>
-                <span className="text-gray-300">info@artcrafts.com</span>
+                <i className="fa-solid fa-envelope-open-text text-blue-400"></i>
+                <a
+                  href="mailto:fatimasidhuit@gmail.com"
+                  className="text-gray-300 hover:underline"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  fatimasidhuit@gmail.com
+                </a>
               </div>
               <div className="flex items-center space-x-3">
-                <i className="ri-phone-line text-blue-400"></i>
-                <span className="text-gray-300">+92 300 1234567</span>
+                <i className="fa-brands fa-instagram text-pink-400"></i>
+                <a
+                  href="https://www.instagram.com/dreamgirl3442021?utm_source=qr&igshid=MzNlNGNkZWQ4Mg%3D%3D"
+                  className="text-gray-300 hover:underline"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Art&Crafts
+                </a>
               </div>
               <div className="flex items-center space-x-3">
-                <i className="ri-map-pin-line text-blue-400"></i>
-                <span className="text-gray-300">Karachi, Pakistan</span>
+                <i className="fa-brands fa-twitter text-blue-400"></i>
+                <a
+                  href="https://twitter.com/AqsaShahzadi484?t=BA_f8xqqpmOEq_w33x4sQA&s=08"
+                  className="text-gray-300 hover:underline"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Art&Crafts
+                </a>
               </div>
-            </div>
-
-            {/* Social Links */}
-            <div className="flex space-x-4 mt-6">
-              <a
-                href="#"
-                className="text-gray-300 hover:text-blue-400 transition-colors"
-              >
-                <i className="ri-facebook-fill text-xl"></i>
-              </a>
-              <a
-                href="#"
-                className="text-gray-300 hover:text-blue-400 transition-colors"
-              >
-                <i className="ri-instagram-line text-xl"></i>
-              </a>
-              <a
-                href="#"
-                className="text-gray-300 hover:text-blue-400 transition-colors"
-              >
-                <i className="ri-twitter-line text-xl"></i>
-              </a>
-              <a
-                href="#"
-                className="text-gray-300 hover:text-blue-400 transition-colors"
-              >
-                <i className="ri-youtube-line text-xl"></i>
-              </a>
             </div>
           </div>
         </div>
@@ -122,26 +115,6 @@ const Footer = () => {
             <p className="text-gray-400 text-sm">
               © 2025 Art & Crafts. All rights reserved.
             </p>
-            <div className="flex space-x-6 mt-4 md:mt-0">
-              <Link
-                to="#"
-                className="text-gray-400 hover:text-white text-sm transition-colors"
-              >
-                Privacy Policy
-              </Link>
-              <Link
-                to="#"
-                className="text-gray-400 hover:text-white text-sm transition-colors"
-              >
-                Terms of Service
-              </Link>
-              <Link
-                to="#"
-                className="text-gray-400 hover:text-white text-sm transition-colors"
-              >
-                Cookie Policy
-              </Link>
-            </div>
           </div>
         </div>
       </div>

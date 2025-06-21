@@ -198,8 +198,7 @@ const Login = () => {
           {currentState === "Login" && (
             <span
               className="cursor-pointer hover:underline"
-              // Fixed: Added leading slash
-              onClick={() => navigate("ForgotPassword.jsx")}
+              onClick={() => navigate("/forgot-password")}
             >
               Forgot password?
             </span>

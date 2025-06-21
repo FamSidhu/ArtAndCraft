@@ -7,6 +7,8 @@ import Search from "../pages/search.jsx";
 import Categories from "../pages/Categories.jsx";
 import Login from "../pages/Login.jsx";
 import Home from "../pages/Home.jsx";
+import ForgotPassword from "../pages/ForgotPassword.jsx";
+import CartSidebar from "../pages/CartSidebar.jsx";
 import "../index.css";
 
 const router = createBrowserRouter([
@@ -41,6 +43,14 @@ const router = createBrowserRouter([
       {
         path: "search",
         element: <Search />,
+      },
+      {
+        path: "forgot-password",
+        element: <ForgotPassword />,
+      },
+      {
+        path: "CartSidebar",
+        element: <CartSidebar />,
       },
     ],
   },
