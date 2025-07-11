@@ -1,6 +1,6 @@
 import React, { useRef, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import products from "../data/products.json";
+import products from "../../data/products.json";
 
 const Home = () => {
   // Import useRef and useEffect for intersection observer and animation

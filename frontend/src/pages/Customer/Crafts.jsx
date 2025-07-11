@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { useCart } from "../context/CartContext";
+import { useCart } from "../../context/CartContext";
 import { FaStar } from "react-icons/fa";
 
 const Crafts = () => {

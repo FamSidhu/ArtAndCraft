@@ -1,5 +1,5 @@
 import React from "react";
-import { useCart } from "../context/CartContext";
+import { useCart } from "../../context/CartContext";
 
 const CartSidebar = ({ isOpen, toggleCart }) => {
   const { cartItems, removeFromCart } = useCart();

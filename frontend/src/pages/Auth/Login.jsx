@@ -1,7 +1,5 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-// ToastContainer ko yahan import karne ki zarurat nahi - ye App.js mein hona chahiye
-
 const Login = () => {
   const navigate = useNavigate();
   const [currentState, setCurrentState] = useState("Login");
@@ -10,16 +8,8 @@ const Login = () => {
     email: "",
     password: "",
     confirmPassword: "",
-    role: "customer",
+    role: "",
   });
-
-  const roleOptions = [
-    { value: "customer", label: "Customer" },
-    { value: "artist", label: "Artist" },
-    { value: "crafter", label: "Crafter" },
-    { value: "admin", label: "Admin" },
-  ];
-
   const onSubmitHandler = async (event) => {
     event.preventDefault();
     if (
@@ -40,6 +30,53 @@ const Login = () => {
     }));
   };
 
+  const CustomDropdown = ({ selectedRole, setSelectedRole }) => {
+    const [isOpen, setIsOpen] = useState(false);
+
+    const roleOptions = [
+      { value: "customer", label: "Customer" },
+      { value: "artist", label: "Artist" },
+      { value: "crafter", label: "Crafter" },
+      { value: "admin", label: "Admin" },
+    ];
+
+    const handleSelect = (value) => {
+      setSelectedRole(value);
+      setIsOpen(false);
+    };
+
+    return (
+      <div className="relative">
+        <label className="text-sm font-semibold text-gray-700 mb-1 block">
+          Role
+        </label>
+        <div
+          onClick={() => setIsOpen(!isOpen)}
+          className="cursor-pointer w-full px-3 py-2 border border-gray-300 rounded-md bg-white text-black"
+        >
+          {selectedRole ? (
+            roleOptions.find((r) => r.value === selectedRole)?.label
+          ) : (
+            <span className="text-gray-400">Select role</span>
+          )}
+        </div>
+        {isOpen && (
+          <ul className="absolute z-10 w-full border border-gray-300 bg-white mt-1 rounded-md shadow-md">
+            {roleOptions.map((option) => (
+              <li
+                key={option.value}
+                onClick={() => handleSelect(option.value)}
+                className="px-4 py-2 hover:bg-gray-800 hover:text-white cursor-pointer transition"
+              >
+                {option.label}
+              </li>
+            ))}
+          </ul>
+        )}
+      </div>
+    );
+  };
+
   return (
     <div
       className="flex mt-8 items-center justify-center min-h-screen"
@@ -54,7 +91,6 @@ const Login = () => {
         className="bg-white shadow-2xl rounded-2xl p-10 w-[90%] max-w-4xl transition-all duration-300"
       >
         <div className="text-center mb-8">
-          {/* Fixed: text-white-700 should be text-gray-700 */}
           <h2 className="text-4xl font-bold text-gray-700">{currentState}</h2>
           <p className="text-sm text-gray-500 mt-2">
             {currentState === "Login"
@@ -63,12 +99,9 @@ const Login = () => {
           </p>
         </div>
 
-        {/* Sign Up: Horizontal Grid Layout */}
         {currentState === "Sign Up" ? (
           <div className="grid sm:grid-cols-2 gap-6">
-            {/* Right Side Inputs */}
             <div className="flex flex-col gap-4">
-              {/* Name */}
               <div>
                 <label className="text-sm font-semibold text-gray-700">
                   Name
@@ -84,7 +117,6 @@ const Login = () => {
                 />
               </div>
 
-              {/* Email */}
               <div>
                 <label className="text-sm font-semibold text-gray-700">
                   Email
@@ -100,7 +132,6 @@ const Login = () => {
                 />
               </div>
 
-              {/* Password */}
               <div>
                 <label className="text-sm font-semibold text-gray-700">
                   Password
@@ -117,9 +148,7 @@ const Login = () => {
               </div>
             </div>
 
-            {/* Left Side Inputs */}
             <div className="flex flex-col gap-4">
-              {/* Confirm Password */}
               <div>
                 <label className="text-sm font-semibold text-gray-700">
                   Confirm Password
@@ -135,31 +164,18 @@ const Login = () => {
                 />
               </div>
 
-              {/* Role */}
               <div>
-                <label className="text-sm font-semibold text-gray-700">
-                  Role
-                </label>
-                <select
-                  name="role"
-                  value={formData.role}
-                  onChange={handleInputChange}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-black bg-white"
-                  required
-                >
-                  {roleOptions.map((option) => (
-                    <option key={option.value} value={option.value}>
-                      {option.label}
-                    </option>
-                  ))}
-                </select>
+                <CustomDropdown
+                  selectedRole={formData.role}
+                  setSelectedRole={(role) =>
+                    setFormData((prev) => ({ ...prev, role }))
+                  }
+                />
               </div>
             </div>
           </div>
         ) : (
-          // Login Layout (single column)
           <div className="flex flex-col gap-4">
-            {/* Email */}
             <div>
               <label className="text-sm font-semibold text-gray-700">
                 Email
@@ -175,7 +191,6 @@ const Login = () => {
               />
             </div>
 
-            {/* Password */}
             <div>
               <label className="text-sm font-semibold text-gray-700">
                 Password
@@ -193,7 +208,6 @@ const Login = () => {
           </div>
         )}
 
-        {/* Links */}
         <div className="flex justify-between text-sm mt-4 text-gray-600">
           {currentState === "Login" && (
             <span
@@ -215,7 +229,6 @@ const Login = () => {
           </span>
         </div>
 
-        {/* Submit */}
         <button
           type="submit"
           className="mt-6 w-full py-3 bg-gray-900 hover:bg-gray-600 text-white font-semibold rounded-lg transition duration-300"

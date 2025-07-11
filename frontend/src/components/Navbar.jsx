@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { useCart } from "../context/CartContext";
-import CartSidebar from "../pages/CartSidebar.jsx"; // ✅ adjust path if needed
-
+import CartSidebar from "../pages/Customer/CartSidebar.jsx";
 const Navbar = () => {
   const location = useLocation();
   const { cartItems } = useCart();
