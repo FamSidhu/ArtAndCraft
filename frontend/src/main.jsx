@@ -5,11 +5,16 @@ import { RouterProvider } from "react-router-dom";
 import router from "./routers/router.jsx";
 import "remixicon/fonts/remixicon.css";
 import { CartProvider } from "./context/CartContext";
+import { SearchProvider } from "./context/Search";
 
-createRoot(document.getElementById("root")).render(
+const root = createRoot(document.getElementById("root"));
+
+root.render(
   <StrictMode>
     <CartProvider>
-      <RouterProvider router={router} />
+      <SearchProvider>
+        <RouterProvider router={router} />
+      </SearchProvider>
     </CartProvider>
   </StrictMode>
 );

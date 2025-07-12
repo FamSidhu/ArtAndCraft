@@ -1,17 +1,38 @@
 import React, { useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useCart } from "../context/CartContext";
+import { useSearch } from "../context/Search";
 import CartSidebar from "../pages/Customer/CartSidebar.jsx";
+
 const Navbar = () => {
   const location = useLocation();
+  const navigate = useNavigate();
   const { cartItems } = useCart();
+  const [search, setSearch] = useSearch();
 
-  // ✅ Sidebar open/close state
   const [isCartOpen, setIsCartOpen] = useState(false);
+  const [showSearchInput, setShowSearchInput] = useState(false);
+  const [keyword, setKeyword] = useState("");
 
-  // ✅ Toggle function
   const toggleCart = () => {
     setIsCartOpen(!isCartOpen);
+  };
+
+  const toggleSearchInput = () => {
+    setShowSearchInput(!showSearchInput);
+  };
+
+  const handleSearchSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const res = await fetch(`/api/v1/product/search/${keyword}`);
+      const data = await res.json();
+      setSearch({ ...search, results: data });
+      navigate("/search");
+      setShowSearchInput(false); // hide bar after submit
+    } catch (err) {
+      console.error("Search error", err);
+    }
   };
 
   const navLinks = [
@@ -55,22 +76,40 @@ const Navbar = () => {
           ))}
         </ul>
 
-        {/* Icons Section */}
-        <div className="nav-icons flex space-x-4 text-xl relative">
-          <Link to="/search" className="hover:text-gray-400">
+        {/* Icons */}
+        <div className="nav-icons flex space-x-4 text-xl relative items-center">
+          {/* Search input field */}
+          {showSearchInput && (
+            <form onSubmit={handleSearchSubmit} className="mr-2">
+              <input
+                type="text"
+                placeholder="Search..."
+                value={keyword}
+                onChange={(e) => setKeyword(e.target.value)}
+                className="px-2 py-1 text-black rounded focus:outline-none"
+                autoFocus
+              />
+            </form>
+          )}
+
+          {/* Search Icon */}
+          <button onClick={toggleSearchInput} className="hover:text-gray-400">
             <i className="ri-search-line"></i>
-          </Link>
-          <button className="hover:text-gray-400 relative" onClick={toggleCart}>
+          </button>
+
+          {/* Cart Icon */}
+          <button onClick={toggleCart} className="hover:text-gray-400 relative">
             <i className="ri-shopping-bag-line"></i>
             <sup className="cart-count">{cartItems.length}</sup>
           </button>
+
+          {/* Login Icon */}
           <Link to="/login" className="hover:text-gray-400">
             <i className="ri-user-line"></i>
           </Link>
         </div>
       </nav>
 
-      {/* ✅ Sidebar shown here */}
       <CartSidebar isOpen={isCartOpen} toggleCart={toggleCart} />
     </header>
   );
