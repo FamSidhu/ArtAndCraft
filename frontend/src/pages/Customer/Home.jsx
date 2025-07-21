@@ -147,6 +147,7 @@ const Home = () => {
           </div>
         </div>
       </section>
+
       {/* Testimonials */}
       <section className="py-16 px-6 md:px-20">
         <h2 className="text-2xl font-semibold mb-10 text-center">
