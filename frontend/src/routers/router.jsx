@@ -21,6 +21,7 @@ import ProtectedRoute from "../components/ProtectedRoute";
 
 // Seller Dashboard - Updated import path
 import SellerDashboard from "../components/Seller/Components/SellerDashboard";
+import AdminDashboard from "../components/Admin/Components/AdminDashboard";
 
 const router = createBrowserRouter([
   {
@@ -48,7 +49,7 @@ const router = createBrowserRouter([
           { path: "dashboard", element: <Dashboard /> },
           { path: "seller-dashboard", element: <SellerDashboard /> },
           // Add admin dashboard route when you create it
-          // { path: "admin-dashboard", element: <AdminDashboard /> },
+          { path: "admin-dashboard", element: <AdminDashboard /> },
         ],
       },
     ],
