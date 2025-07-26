@@ -11,13 +11,11 @@ const Dashboard = () => {
       // Redirect based on user role
       switch (user.role) {
         case "artist":
-          navigate("seller-dashboard");
-          break;
         case "crafter":
-          navigate("/seller-dashboard");
+          navigate("/seller-dashboard"); // Both artists and crafters go to seller dashboard
           break;
         case "customer":
-          navigate("/");
+          navigate("/"); // Home page for customers
           break;
         case "admin":
           navigate("/admin-dashboard");
